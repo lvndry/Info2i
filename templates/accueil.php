@@ -27,15 +27,11 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
                <!--Les titres des derniers themes devront etre affiché grace a du JS ou au backend--> 
                 <h2>Les derniers topics crées : </h2><hr />
                 <ol>
-            <!--
-                /*$lasttopic = last_topics();
-                if($lasttopic){
-                    while($donnees = $lasttopic->fetch())
-                    {
-                    echo '<li>'.$donnees['Topic_title'].'<li>';
-                    }
-                } */
-                */ -->
+                <?php
+                    $topics = last_topics();
+                    foreach($topics as $element)
+                        echo "<li><a href=\"#\">[". $element["Topic_creator"]. "]" .$element["Topic_content"]. "<a/></li> <br />";
+                ?>
             </div>
         </section>
         
