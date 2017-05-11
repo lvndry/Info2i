@@ -1,0 +1,83 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    background: #2B2B2B;
+    color: #F6F6F6;
+}
+
+.nav li{
+    display: inline-block;
+    margin-left: 10px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.nav ul{
+    display: inline;
+}
+
+.nav{
+    width: 300px;
+    list-style: none;
+    text-align: right;
+}
+
+.nav li{
+    float: left; 
+}
+
+.nav li a{
+    color: red;
+}
+
+section h2{
+    text-align: center
+}
+
+section{
+    border: 1px solid;
+    margin-bottom: 3%;
+}
+
+.last-topic-contain{
+    margin-top: 20em;
+}
+
+section hr{
+    width: 80%;
+}
+
+li a{
+    color: black;
+    text-decoration: none;
+}
+
+li a:hover{
+    color: orange;
+}
+
+.disscusion-box{
+    float: right;
+    margin-top: 3px;
+    height: 18em;
+    width: 30em;
+    border: 1px solid;
+}
+
+.all-themes{
+    height: 300px;
+}
+
+.ul-container{
+    border : none;
+}
+
+.strong{
+    float: left;
+    margin-left: 15%;
+    padding-bottom: 15px;
+}
+
+.strong h3:hover{
+    color: black;
+}
