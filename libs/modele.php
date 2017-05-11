@@ -106,6 +106,12 @@ function isAdmin($id) {
 	// return $tabR[0]["valide"];
 }
 
+function last_topics(){
+    $SQL  = "SELECT * FROM (SELECT * FROM topic ORDER BY Topic_id DESC LIMIT 5) sub ORDER BY Topic_id ASC";
+        
+        return parcoursRs(SQLSelect($SQL));
+}
+
 
 
 
