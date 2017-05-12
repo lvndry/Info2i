@@ -31,12 +31,9 @@ session_start();
 			// Connexion //////////////////////////////////////////////////
 			case 'Connexion' :
 				// On verifie la presence des champs login et passe
-				if ($login = valider("login"))
-				if ($passe = valider("passe"))
-				{
-					// On verifie l'utilisateur, 
-					// et on crée des variables de session si tout est OK
-					// Cf. maLibSecurisation
+				
+				$passe = valider("passe");
+				$login = valider("login");
 					if (verifUser($login,$passe)) {
 						// tout s'est bien passé, doit-on se souvenir de la personne ? 
 						if (valider("remember")) {
@@ -47,16 +44,24 @@ session_start();
 							setcookie("login","", time()-3600);
 							setcookie("passe","", time()-3600);
 							setcookie("remember",false, time()-3600);
+							$addArgs = "?view=accueil";
 						}
 
 					}	
-				}
+					else 
+					{
+						$msg4 ="erreur";
+						$addArgs = "?view=login&msg4=erreur";
+					}
+				
+				
 
 				// On redirigera vers la page index automatiquement
 			break;
 
 			case 'Logout' :
 				session_destroy();
+				$addArgs = "?view=login";
 			break;
 
 
@@ -66,21 +71,40 @@ session_start();
 				$addArgs = "?view=inscription";
 
 				if ($login = valider("login"))
-				if ($passe = valider("passe")) {
+				if ($passe = valider("passe"))
+				if ($email = valider("email")) {
 					//TODO: il faudrait vérifier 
 					// que ce login n'est pas déjà utilisé
 
 					// créer l'utilisateur 
 					// non validé par défaut 
-					$id = creerUser($login,$passe); 
+					$msg = creerUser($login,$passe, $email); 
+					$msg2 = creerUser($login,$passe, $email);
+					$msg3 = creerUser($login,$passe, $email);
+					
+					
+					
+					if($msg=="login")
+					{
 
-					// auto-connecter cet utilisateur
-					creerSessionUserConnecte($login,$id);
-					// pied de page devra afficher
-					//		 'en attente de validation'
+ 
+					$addArgs = "?view=Inscription&msg=login";
+					}
 
-					// Prochaine vue = vue accueil  
-					$addArgs = "?view=accueil";
+					else if($msg2 =="email")
+					{
+						$addArgs = "?view=Inscription&msg2=email";
+					}
+
+					else
+					{
+					$msg3="ok";
+					$addArgs = "?view=Inscription&msg3=ok";
+					}
+
+
+
+
 				}
 
 			break; 

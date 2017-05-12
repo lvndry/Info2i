@@ -24,8 +24,8 @@ include_once("libs/modele.php");
 		// Si l'utilisateur est connecte, on affiche un lien de deconnexion 
 		if (valider("connecte","SESSION"))
 		{
-			echo "Utilisateur <b>$_SESSION[pseudo]</b> connecté depuis <b>$_SESSION[heureConnexion]</b> &nbsp; "; 
-			echo "<a href=\"controleur.php?action=Logout\">Se Déconnecter</a>";
+			echo "Connecté en tant que <b>$_SESSION[pseudo]</b>"; 
+			echo "<a href=\"controleur.php?action=Logout\"> <button type=\"button\" class=\"btn btn-default pull-right\"> Se Déconnecter </button> </a>";
 
 			// LE compte est-il valide ? 
 		// erreur : fonction isValid inconnue... 
@@ -40,3 +40,4 @@ include_once("libs/modele.php");
 
 </body>
 </html>
+

@@ -34,13 +34,16 @@ if ($checked = valider("remember", "COOKIE")) $checked = "checked";
   </div>
   <button type="submit" name="action" value="Connexion" class="btn btn-default">Connexion</button>
 
-<a href="?view=inscription">Pas encore inscrit ?</a>
-
 </form>
-
 
 </p>
 
+<?php
+if ($msg4 = valider("msg4"))
+echo "<div class=\"alert alert-danger\" role=\"alert\"><strong> Erreur </strong> Les identifiants sont incorrects. </div>"
+
+
+?>
 
 
 

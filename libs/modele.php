@@ -67,7 +67,7 @@ function autoriserUtilisateur($idUser)
 function verifUserBdd($login,$passe)
 {
 	// Vérifie l'identité d'un utilisateur 
-	// dont les identifiants sont passes en paramètre
+	  // dont les identifiants sont passes en paramètre
 	// renvoie faux si user inconnu
 	// renvoie l'id de l'utilisateur si succès
 
@@ -79,11 +79,29 @@ function verifUserBdd($login,$passe)
 }
 
 
-function creerUser($pseudo,$passe) {
-	$SQL = "INSERT INTO members(Member_pseudo,Member_passwd) VALUES ('$pseudo','$passe')";
+function creerUser($login,$passe,$email) {
+  if($login!="" && $passe!="" && $email!="")
+  {	
+	if (!DoublonLogin($login)) 
+	{
+			if(!doublonEmail($email)) 
+			{
 
-	return SQLInsert($SQL); 	
-	// renvoie l'id de l'utilisateur créé 
+				$SQL = "INSERT INTO members(Member_pseudo,Member_passwd,Member_email) VALUES ('$login','$passe','$email')";
+			
+	
+
+	return SQLInsert($SQL); 
+			}
+			else{
+				return"email"; 
+			}	
+	}
+	else{
+		return "login"; 
+	}
+  } 
+  // renvoie l'id de l'utilisateur créé 
 }
 
 
@@ -106,13 +124,24 @@ function isAdmin($id) {
 	// return $tabR[0]["valide"];
 }
 
+function DoublonLogin($login) {
+//verifie que le login entré n'existe pas déjà dans la base de données
+	$SQL="SELECT Member_pseudo FROM members WHERE Member_pseudo='$login'";
+	return SQLGetChamp($SQL);
+}
+
+function doublonEmail($email)
+{
+	//verifie que l'adresse email entré n'existe pas déjà dans la base de données
+	$SQL="SELECT Member_email FROM members WHERE Member_email='$email'";
+	return SQLGetChamp($SQL);
+}
+
 function last_topics(){
     $SQL  = "SELECT * FROM (SELECT * FROM topic ORDER BY Topic_id DESC LIMIT 5) sub ORDER BY Topic_id ASC";
         
         return parcoursRs(SQLSelect($SQL));
 }
-
-
 
 
 

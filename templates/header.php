@@ -47,7 +47,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 <div id="wrap">
   
   <!-- Fixed navbar -->
-  <div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -61,10 +61,14 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 		<?=mkHeadLink("Accueil","accueil",$view)?>
 		<?php
 		// Si l'utilisateur n'est pas connecte, on affiche un lien de connexion 
-		if (!valider("connecte","SESSION")) {
-			echo mkHeadLink("Se connecter","login",$view); 
-			//echo "<li><a href=\"index.php?view=login\">Se connecter</a></li>";
+
+
+		if (valider("connecte","SESSION")) {
+			
+			echo mkHeadLink("Mon profil","profil",$view);
 		}
+
+		
 		// else {
 		// 	// s'il est connecté et administrateur... 
 		// 	if (isAdmin($_SESSION["idUser"])) 
@@ -72,19 +76,30 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 		// }
 		?>
         </ul>
+
+       	<ul class="nav navbar-nav navbar-right">
+
+
+
+       	<?php
+
+       	if (!valider("connecte","SESSION")) {
+			echo mkHeadLink("Connexion","login",$view); 
+			//echo "<li><a href=\"index.php?view=login\">Se connecter</a></li>";
+		}
+
+		if (!valider("connecte","SESSION")) {
+			echo mkHeadLink("Inscription","inscription",$view);
+		}
+
+       	?>
+
+
+    </ul>
+
       </div><!--/.nav-collapse -->
     </div>
   </div>
   
-
-
   <!-- Begin page content -->
-  <div class="container">
-
-
-
-
-
-
-
-
+  <div class="container"> 

@@ -17,17 +17,44 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 
  <form role="form" action="controleur.php">
   <div class="form-group">
-    <label for="email">Login</label>
-    <input type="text" class="form-control" id="email" name="login" >
+    <label for="login">Login</label>
+    <input type="text" class="form-control" id="login" name="login" >
   </div>
   <div class="form-group">
     <label for="pwd">Passe</label>
     <input type="password" class="form-control" id="pwd" name="passe">
   </div>
+  <div class="form-group">
+  <label for="email">Email</label>
+  <input type="email" class="form-control" id="email" name="email">
+  </div>
+
+
   <button type="submit" name="action" value="Inscription" class="btn btn-default">Inscription</button>
 </form>
+</p>wQa
+<p>
+
+<?php 
+if ($msg = valider("msg"))
+echo "<div class=\"alert alert-danger\" role=\"alert\">Erreur dans la création de votre compte.<strong> Login déjà utilisé </strong> </div>"
+
+?> 
+
+<?php
+if ($msg2 = valider("msg2"))
+echo "<div class=\"alert alert-danger\" role=\"alert\">Erreur dans la création de votre compte.<strong> Email déjà utilisé </strong> </div>"
+?>
+
+<?php 
+if ($msg3 = valider("msg3"))
+echo "<div class=\"alert alert-success\" role=\"alert\">Votre compte a bien été crée.</div>"
+
+
+?>
 
 </p>
+
 
 
 
