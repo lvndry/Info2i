@@ -1,21 +1,22 @@
 <?php
 if (basename($_SERVER["PHP_SELF"]) != "index.php")
 {
-	header("Location:../index.php?view=login");
+	header("Location:../index.php?view=last_request");
 	die("");
 }
     $categorie = $_GET['cat'];
 ?>
+    <link rel="stylesheet" href="css/Home_css.css">
     
+    <a class="creation" href="templates/Create_topic.php">Creer topic</a>
     <section class="last-topic-contain">
             <div class="last-topic">
-               <!--Les titres des derniers themes devront etre affiché grace a du JS ou au backend--> 
-                <h2>Les derniers topics crées : </h2><hr />
                 <ol>
                 <?php
+                    echo "<h2>Les derniers topics en $categorie </h2></hr>";
                     $topics = last_cat_topics($categorie);
                     foreach($topics as $element)
-                        echo "<li><a href=\"#\">[". $element["Topic_creator"]. "]" .$element["Topic_content"]. "<a/></li> <br />";
+                        echo "<li><a href=\"#\">[". $element["Topic_creator"]. "]" .$element["Topic_content"]. "<a/></li><br />";
                 ?>
             </div>
         </section>

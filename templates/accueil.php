@@ -1,5 +1,4 @@
 <?php
-
 //C'est la propriété php_self qui nous l'indique : 
 // Quand on vient de index : 
 // [PHP_SELF] => /chatISIG/index.php 
@@ -24,7 +23,6 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
     <body>
         <section class="last-topic-contain">
             <div class="last-topic">
-               <!--Les titres des derniers themes devront etre affiché grace a du JS ou au backend--> 
                 <h2>Les derniers topics crées : </h2><hr />
                 <ol>
                 <?php

@@ -84,10 +84,7 @@ function creerUser($login,$passe,$email) {
 			if(!doublonEmail($email)) 
 			{
 
-				$SQL = "INSERT INTO members(Member_pseudo,Member_passwd,Member_email) VALUES ('$login','$passe','$email')";
-			
-	
-
+				$SQL = "INSERT INTO members(Member_pseudo, Member_passwd, Member_email) VALUES ('$login','$passe','$email')";
 	return SQLInsert($SQL); 
 			}
 			else{
