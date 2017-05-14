@@ -30,7 +30,6 @@ function listerUtilisateurs($classe = "both")
 
 }
 
-
 function validerUtilisateur($idUser)
 {
 	// cette fonction affecte le booléen "blacklist" à vrai
@@ -44,7 +43,6 @@ function supprimerUtilisateur($idUser)
 	$SQL = "DELETE FROM members WHERE id='$idUser'";
 	SQLDelete($SQL);
 }
-
 
 function interdireUtilisateur($idUser)
 {
@@ -78,7 +76,6 @@ function verifUserBdd($login,$passe)
 	// on aurait du utiliser SQLSelect
 }
 
-
 function creerUser($login,$passe,$email) {
   if($login!="" && $passe!="" && $email!="")
   {	
@@ -101,9 +98,8 @@ function creerUser($login,$passe,$email) {
 		return "login"; 
 	}
   } 
-  // renvoie l'id de l'utilisateur créé 
+  //renvoie l'id de l'utilisateur créé 
 }
-
 
 function isValid($id) {
 	$SQL = "SELECT valide FROM members WHERE id='$id'"; 
@@ -113,7 +109,6 @@ function isValid($id) {
 	// $tabR = parcoursRs(SQLSelect($SQL))
 	// return $tabR[0]["valide"];
 }
-
 
 function isAdmin($id) {
 	$SQL = "SELECT admin FROM members WHERE id='$id'"; 
@@ -143,12 +138,10 @@ function last_topics(){
         return parcoursRs(SQLSelect($SQL));
 }
 
-
-
-
-
-
-
-
+function last_cat_topics($categorie){
+     $SQL  = "SELECT * FROM (SELECT * FROM topic where Topic_genre = '$categorie' ORDER BY Topic_id DESC LIMIT 5) sub ORDER BY Topic_id ASC";
+     
+    return parcoursRs(SQLSelect($SQL));
+}
 
 ?>

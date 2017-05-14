@@ -27,19 +27,18 @@ session_start();
 		switch($action)
 		{
 			
-			
 			// Connexion //////////////////////////////////////////////////
 			case 'Connexion' :
 				// On verifie la presence des champs login et passe
 				
 				$passe = valider("passe");
 				$login = valider("login");
-					if (verifUser($login,$passe)) {
+					if (verifUser($login, $passe)) {
 						// tout s'est bien passé, doit-on se souvenir de la personne ? 
 						if (valider("remember")) {
-							setcookie("login",$login , time()+60*60*24*30);
-							setcookie("passe",$password, time()+60*60*24*30);
-							setcookie("remember",true, time()+60*60*24*30);
+							setcookie("login", $login , time()+60*60*24*30);
+							setcookie("passe", $password, time()+60*60*24*30);
+							setcookie("remember", true, time()+60*60*24*30);
 						} else {
 							setcookie("login","", time()-3600);
 							setcookie("passe","", time()-3600);
@@ -55,7 +54,6 @@ session_start();
 					}
 				
 				
-
 				// On redirigera vers la page index automatiquement
 			break;
 
@@ -82,13 +80,9 @@ session_start();
 					$msg2 = creerUser($login,$passe, $email);
 					$msg3 = creerUser($login,$passe, $email);
 					
-					
-					
 					if($msg=="login")
 					{
-
- 
-					$addArgs = "?view=Inscription&msg=login";
+					   $addArgs = "?view=Inscription&msg=login";
 					}
 
 					else if($msg2 =="email")
@@ -98,18 +92,12 @@ session_start();
 
 					else
 					{
-					$msg3="ok";
-					$addArgs = "?view=Inscription&msg3=ok";
+					   $msg3="ok";
+					   $addArgs = "?view=Inscription&msg3=ok";
 					}
-
-
-
-
 				}
-
 			break; 
-
-
+       
 			case "Valider" : 
 			if ($idUser = valider("idUser"))
 				validerUtilisateur($idUser);
@@ -139,8 +127,13 @@ session_start();
 		}
 
 	}
+    /*if($categorie = $_POST['cat']){
+        rediriger("incscription.php");
+        echo 'La categorie est' . $categorie . '.';
+        $addArgs = '?view='.$categorie;
+    }*/
 
-	// On redirige toujours vers la page index, mais on ne connait pas le répertoire de base
+        // On redirige toujours vers la page index, mais on ne connait pas le répertoire de base
 	// On l'extrait donc du chemin du script courant : $_SERVER["PHP_SELF"]
 	// Par exemple, si $_SERVER["PHP_SELF"] vaut /chat/data.php, dirname($_SERVER["PHP_SELF"]) contient /chat
 

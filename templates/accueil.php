@@ -41,21 +41,20 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
         <ul>
             <li class="strong"> <a href="#"><h3>Scolaire</h3></a>
                 <ul>
-                    <li><a href="controleur.php?cat=', urlencode('Mathematiques'), '">Mathematiques</a></li>
-                    <li><a href="#">Industriel</a></li>
-                    <li><a href="#">Communication</a></li>
-                    <li><a href="#">Langues</a></li>
+                    <li><a href="index.php?view=topic&cat=Mathematiques">Mathematiques</a></li>
+                    <li><a href="index.php?view=topic&cat=Industriel">Industriel</a></li>
+                    <li><a href="index.php?view=topic&cat=Communiction">Communication</a></li>
+                    <li><a href="index.php?view=topic&cat=Langues">Langues</a></li>
                     
                 </ul>
             </li>
             <li class="strong"><a><h3>Divers</h3></a>
                <ul>
-                   <li><a href="#">diy</a></li>
-                   <li><a href="#">Cuisine</a></li>
-                   <li><a href="#">Soiree</a></li>
+                   <li><a href="index.php?view=topic&cat=DIY">diy</a></li>
+                   <li><a href="index.php?view=topic&cat=Cuisine">Cuisine</a></li>
+                   <li><a href="index.php?view=topic&cat=Soirée">Soiree</a></li>
                </ul>
             </li>
-            
             <li class="strong"><a href="#"><h3>Ventes</h3></a></li>
         </ul>
         </div>
