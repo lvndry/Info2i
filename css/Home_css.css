@@ -5,42 +5,29 @@ html, body{
     color: #F6F6F6;
 }
 
-.nav li{
-    display: inline-block;
-    margin-left: 10px;
-    text-transform: uppercase;
-    letter-spacing: .5px;
+.creation{
+    border: grey;
+    background: grey;
+    color: white;
 }
 
-.nav ul{
-    display: inline;
+.creation:hover{
+    color: orange;    
 }
 
-.nav{
-    width: 300px;
-    list-style: none;
-    text-align: right;
-}
-
-.nav li{
-    float: left; 
-}
-
-.nav li a{
-    color: red;
+.last-topic-contain{
+    margin-top: 10em;
 }
 
 section h2{
-    text-align: center
+    text-align: center;
+    color: white;
+    text-decoration: none;
 }
 
 section{
     border: 1px solid;
     margin-bottom: 3%;
-}
-
-.last-topic-contain{
-    margin-top: 20em;
 }
 
 section hr{
@@ -54,6 +41,7 @@ li a{
 
 li a:hover{
     color: orange;
+    text-decoration-style: none;
 }
 
 .disscusion-box{
@@ -78,6 +66,3 @@ li a:hover{
     padding-bottom: 15px;
 }
 
-.strong h3:hover{
-    color: black;
-}

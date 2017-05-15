@@ -42,7 +42,6 @@ if ($checked = valider("remember", "COOKIE")) $checked = "checked";
 if ($msg4 = valider("msg4"))
 echo "<div class=\"alert alert-danger\" role=\"alert\"><strong> Erreur </strong> Les identifiants sont incorrects. </div>"
 
-
 ?>
 
 

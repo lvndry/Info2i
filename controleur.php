@@ -36,9 +36,9 @@ session_start();
 					if (verifUser($login, $passe)) {
 						// tout s'est bien passé, doit-on se souvenir de la personne ? 
 						if (valider("remember")) {
-							setcookie("login", $login , time()+60*60*24*30);
-							setcookie("passe", $password, time()+60*60*24*30);
-							setcookie("remember", true, time()+60*60*24*30);
+							setcookie('1login', $login , time()+60*60*24*30);
+							setcookie('passe', $password, time()+60*60*24*30);
+							setcookie('remember', true, time()+60*60*24*30);
 						} else {
 							setcookie("login","", time()-3600);
 							setcookie("passe","", time()-3600);

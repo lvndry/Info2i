@@ -8,7 +8,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 ?>
     <link rel="stylesheet" href="css/Home_css.css">
     
-    <a class="creation" href="templates/Create_topic.php">Creer topic</a>
+    <a class="creation" href="Create_topic.php">Creer topic</a>
     <section class="last-topic-contain">
             <div class="last-topic">
                 <ol>

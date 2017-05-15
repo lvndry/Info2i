@@ -63,10 +63,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 		// Si l'utilisateur n'est pas connecte, on affiche un lien de connexion 
 
 
-		if (valider("connecte","SESSION")) {
-			
-			echo mkHeadLink("Mon profil","profil",$view);
-		}
+		
 
 		
 		// else {
@@ -74,27 +71,59 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 		// 	if (isAdmin($_SESSION["idUser"])) 
 		// 		echo mkHeadLink("Administration","admin",$view); 
 		// }
+
+		//LES LIENS DE LA NAVBAR A DROITE 
 		?>
         </ul>
 
-       	<ul class="nav navbar-nav navbar-right">
+       	<ul class="nav navbar-nav navbar-right"> 
 
 
 
        	<?php
 
        	if (!valider("connecte","SESSION")) {
-			echo mkHeadLink("Connexion","login",$view); 
-			//echo "<li><a href=\"index.php?view=login\">Se connecter</a></li>";
+       		?>
+
+				
+			<li><a href="index.php?view=login"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
+			<?php
+
+		} 
+		?>
+
+		<?php
+
+       	if (!valider("connecte","SESSION")) {
+       		?>
+
+				
+			<li><a href="index.php?view=Inscription"><span class="glyphicon glyphicon-user"></span> Inscription</a></li>
+			<?php
+
 		}
+		?>
 
-		if (!valider("connecte","SESSION")) {
-			echo mkHeadLink("Inscription","inscription",$view);
+		<?php
+		
+		if (valider("connecte","SESSION")) {
+		?>
+			
+			<li><a href="index.php?view=profil"><span class="glyphicon glyphicon-certificate"></span> Mon profil </a></li>
+		<?php
 		}
+		?>
+    
+		<?php
 
-       	?>
+       	if (valider("connecte","SESSION")) {
+       		?>
 
-
+				
+			<li><a href="controleur.php?action=Logout"><span class="glyphicon glyphicon-off"></span> Se deconnecter </a></li>
+			<?php
+		} 
+		?>
     </ul>
 
       </div><!--/.nav-collapse -->
