@@ -52,8 +52,6 @@ session_start();
 						$msg4 ="erreur";
 						$addArgs = "?view=login&msg4=erreur";
 					}
-				
-				
 				// On redirigera vers la page index automatiquement
 			break;
 
@@ -76,9 +74,9 @@ session_start();
 
 					// créer l'utilisateur 
 					// non validé par défaut 
-					$msg = creerUser($login,$passe, $email); 
-					$msg2 = creerUser($login,$passe, $email);
-					$msg3 = creerUser($login,$passe, $email);
+					$msg = creerUser($login, $passe, $email); 
+					$msg2 = creerUser($login, $passe, $email);
+					$msg3 = creerUser($login, $passe, $email);
 					
 					if($msg=="login")
 					{
@@ -97,7 +95,13 @@ session_start();
 					}
 				}
 			break; 
-       
+            
+            case "Create" : 
+                if($title = valider("title") && $content = valider("content")){
+                    insert_topic($title, $content);
+                }
+            break;
+                
 			case "Valider" : 
 			if ($idUser = valider("idUser"))
 				validerUtilisateur($idUser);

@@ -146,5 +146,9 @@ function InfoUser($id){
     return parcoursRs(SQLSelect($SQL)); 
 }
 
+function insert_topic($title, $content){
+    $SQL = "INSERT INTO topic(Topic_title, Topic_content) VALUES ('$title', '$content')";
+	return SQLInsert($SQL);
+}
 ?>
 

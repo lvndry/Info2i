@@ -28,7 +28,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
                 <?php
                     $topics = last_topics();
                     foreach($topics as $element)
-                        echo "<li><a href=\"#\">[". $element["Topic_creator"]. "]" .$element["Topic_content"]. "<a/></li> <br />";
+                        echo "<li><a href=\"#\">[". $element["Topic_creator"]. "]" .$element["Topic_content"]. "<a/></li><br />";
                 ?>
             </div>
         </section>
@@ -46,6 +46,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
                     
                 </ul>
             </li>
+            
             <li class="strong"><a><h3>Divers</h3></a>
                <ul>
                    <li><a href="index.php?view=topic&cat=DIY">diy</a></li>

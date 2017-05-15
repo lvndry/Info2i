@@ -1,14 +1,16 @@
 <?php
+
 if (basename($_SERVER["PHP_SELF"]) != "index.php")
 {
-	header("Location:../index.php?view=last_request");
+	header("Location:../index.php?view=topic");
 	die("");
 }
     $categorie = $_GET['cat'];
 ?>
     <link rel="stylesheet" href="css/Home_css.css">
-    
-    <a class="creation" href="templates/Create_topic.php">Creer topic</a>
+    <?php
+        echo '<a class="creation" href="templates/Create_topic.php">Creer topic</a>'; 
+    ?>
     <section class="last-topic-contain">
             <div class="last-topic">
                 <ol>

@@ -35,7 +35,7 @@ function verifUser($login,$password)
 
 function creerSessionUserConnecte($login,$id) {
 	$_SESSION["pseudo"] = $login;
-	$_SESSION["idUser"] = $id;
+	$_SESSION["id"] = $id;
 	$_SESSION["connecte"] = true;
 	$_SESSION["heureConnexion"] = date("H:i:s");
 }
