@@ -14,6 +14,10 @@ $BDD_base="testdb_<nom>";
 $BDD_host="localhost";
 $BDD_user="root";
 $BDD_password=""; // vide sous windows
+<<<<<<< HEAD
 $BDD_base="forum";
+=======
+$BDD_base="info2i";
+>>>>>>> origin/master
 
 ?>
