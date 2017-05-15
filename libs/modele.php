@@ -141,4 +141,10 @@ function last_cat_topics($categorie){
     return parcoursRs(SQLSelect($SQL));
 }
 
+function InfoUser($id){
+    $SQL="SELECT Member_pseudo, Member_passwd, Member_email from members where Member_id = '$id'";
+    return parcoursRs(SQLSelect($SQL)); 
+}
+
 ?>
+
