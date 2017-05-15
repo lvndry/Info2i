@@ -77,11 +77,9 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
         </ul>
 
        	<ul class="nav navbar-nav navbar-right"> 
-<<<<<<< HEAD
-=======
 
        	<?php
->>>>>>> origin/master
+
 
        	if (!valider("connecte","SESSION")) {
        		?>
@@ -99,7 +97,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
        		?>
 
 				
-<<<<<<< HEAD
+
 			<li><a href="index.php?view=login"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
 			<?php
 
@@ -112,8 +110,6 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
        		?>
 
 				
-=======
->>>>>>> origin/master
 			<li><a href="index.php?view=Inscription"><span class="glyphicon glyphicon-user"></span> Inscription</a></li>
 			<?php
 
@@ -121,10 +117,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 		?>
 
 		<?php
-<<<<<<< HEAD
-		
-=======
->>>>>>> origin/master
+
 		if (valider("connecte","SESSION")) {
 		?>
 			
