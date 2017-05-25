@@ -17,8 +17,10 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
                 <?php
                     echo "<h2>Les derniers topics en $categorie </h2></hr>";
                     $topics = last_cat_topics($categorie);
-                    foreach($topics as $element)
-                        echo "<li><a href=\"#\">[". $element["Topic_creator"]. "]" .$element["Topic_content"]. "<a/></li><br />";
+                    foreach($topics as $element){
+                        $topic_id = $element["Topic_id"];
+                        echo "<li><a href=\"index.php?view=topic_page&id=$topic_id\">[". $element["Topic_creator"]. "]" .$element["Topic_content"]. "<a/></li><br />";
+                    }
                 ?>
             </div>
         </section>

@@ -21,41 +21,45 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
          <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400">
    </head>
     <body>
-        <section class="last-topic-contain">
+        <section class="last-topic-contain jumbotron">
             <div class="last-topic">
                 <h2>Les derniers topics crées : </h2><hr />
                 <ol>
+                <form action ="controleur.php">
                 <?php
                     $topics = last_topics();
-                    foreach($topics as $element)
-                        echo "<li><a href=\"#\">[". $element["Topic_creator"]. "]" .$element["Topic_content"]. "<a/></li><br />";
+                    foreach($topics as $element){
+                        $topic_id = $element["Topic_id"];
+                        echo "<p><li><a href=\"index.php?view=topic_page&id=$topic_id\">[". $element["Topic_creator"]. "]" .$element["Topic_title"]. "</a></li></p>";
+                    }
                 ?>
+                </form>
             </div>
         </section>
         
-        <section class="all-themes">
+        <section class="all-themes jumbotron">
         <h2 id="all-topics">Tous les forums</h2><hr />
         <div class="ul-container">
-        <ul>
-            <li class="strong"> <a href="#"><h3>Scolaire</h3></a>
+            <li class="strong"> 
+               <h3>Scolaire</h3>
                 <ul>
+                    <li><a href="index.php?view=topic&cat=Informatique">Informatique</a></li>
                     <li><a href="index.php?view=topic&cat=Mathematiques">Mathematiques</a></li>
                     <li><a href="index.php?view=topic&cat=Industriel">Industriel</a></li>
                     <li><a href="index.php?view=topic&cat=Communiction">Communication</a></li>
-                    <li><a href="index.php?view=topic&cat=Langues">Langues</a></li>
-                    
+                    <li><a href="index.php?view=topic&cat=Langues">Langues</a></li> 
                 </ul>
             </li>
             
-            <li class="strong"><a><h3>Divers</h3></a>
+            <li class="strong"><h3>Divers</h3>
                <ul>
                    <li><a href="index.php?view=topic&cat=DIY">diy</a></li>
                    <li><a href="index.php?view=topic&cat=Cuisine">Cuisine</a></li>
                    <li><a href="index.php?view=topic&cat=Soirée">Soiree</a></li>
                </ul>
             </li>
-            <li class="strong"><a href="#"><h3>Ventes</h3></a></li>
-        </ul>
+            <li class="strong"><h3>Ventes</h3></li>
+       
         </div>
         </section>
 </body>

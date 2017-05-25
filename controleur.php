@@ -26,11 +26,9 @@ session_start();
 		// Un paramètre action a été soumis, on fait le boulot...
 		switch($action)
 		{
-			
 			// Connexion //////////////////////////////////////////////////
 			case 'Connexion' :
 				// On verifie la presence des champs login et passe
-				
 				$passe = valider("passe");
 				$login = valider("login");
 					if (verifUser($login, $passe)) {
@@ -96,10 +94,31 @@ session_start();
 				}
 			break; 
             
-            case "Create" : 
-                if($title = valider("title") && $content = valider("content")){
-                    insert_topic($title, $content);
+            case "Envoyez le topic" : 
+                if($member = valider("pseudo")){
+                    if($content = valider("content")){
+                       $title = valider("title");
+                        $categorie = valider("categorie");
+                        insert_topic($member, $title, $content, $categorie);
+                        $last_t = view_last_user_topic($member);
+                
+                        foreach($last_t as $element){
+                            $id = $element["Topic_id"];
+                            $addArgs = "?view=topic_page&id=$id";
+                        }  
+                    }   
                 }
+                else rediriger("index.php?view=login");
+            break;
+                
+            case "Reponse" :
+                if ($member = valider("pseudo")){
+                    $content = valider("content"); 
+                    $id = valider("id");
+                    insert_responses($content, $id, $member);
+                    rediriger("index.php?view=topic_page&id=$id");
+                }
+                else rediriger("index.php?view=login");
             break;
                 
 			case "Valider" : 
@@ -127,6 +146,63 @@ session_start();
 				autoriserUtilisateur($idUser);
 			$addArgs = "?view=admin";
 			break; 
+
+			case "ChangeMdp" : 
+			$id = valider("id","SESSION"); 
+			$passe = valider("passe");
+			$newpasse = valider("newpasse");
+			$confirmepasse = valider("confirmepasse");
+
+				if ($newpasse == $confirmepasse)
+				{
+					if(verifmdp($passe))
+					{
+						$msgp = "ok";
+						changemdp($newpasse,$id);
+						$addArgs = "?view=profil&msgp=ok";
+					}
+					else
+					{
+						$msg1="mdp";
+						$addArgs="?view=ChangePass&msg1=mdp";
+					}
+				}
+				else
+				{
+					$msg2="doublon";
+					$addArgs ="?view=ChangePass&msg2=doublon";
+				}
+
+			break;
+
+			case "ChangeEmail" : 
+			$id = valider("id","SESSION"); 
+			$email = valider("email");
+			$newemail = valider("newemail");
+			$confirmeemail = valider("confirmeemail");
+
+				if ($newemail == $confirmeemail)
+				{
+					if(verifemail($email))
+					{
+						$msge = "ok";
+						changeemail($newemail,$id);
+						$addArgs = "?view=profil&msge=ok";
+					}
+					else
+					{
+						$msg1 = "mail";
+						$addArgs="?view=ChangeEmail&msg1=mail";
+					}
+				}
+				else
+				{
+					$msg2 = "doublon";
+					$addArgs="?view=ChangeEmail&msg2=doublon";
+				}
+
+
+			break;
 
 		}
 

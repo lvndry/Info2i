@@ -25,7 +25,7 @@ include_once("libs/modele.php");
 		if (valider("connecte","SESSION"))
 		{
 			echo "Connecté en tant que <b>$_SESSION[pseudo]</b>"; 
-			echo "<a href=\"controleur.php?action=Logout\"> <button type=\"button\" class=\"btn btn-default pull-right\"> Se Déconnecter </button> </a>";
+			
 
 			// LE compte est-il valide ? 
 		// erreur : fonction isValid inconnue... 

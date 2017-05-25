@@ -91,18 +91,6 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 		} 
 		?>
 
-		<?php
-
-       	if (!valider("connecte","SESSION")) {
-       		?>
-
-				
-
-			<li><a href="index.php?view=login"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
-			<?php
-
-		} 
-		?>
 
 		<?php
 

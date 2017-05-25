@@ -36,18 +36,20 @@ $id = valider("id","SESSION");
 $info = InfoUser($id);
 ?>
 			
-		<div>Nom d'utilisateur :  <span style="color : blue";> <?php echo '<strong>'.$info[0]["Member_pseudo"].'</strong>'; ?> </span> </div>  <br/> 
-		<div>Mot de passe : <span style="color : blue";> <strong> ********** </strong><br/> <br/> </span> </div>  <!-- on évite de l'écrire vraiment par sécurité  -->
-		<div>Email : <span style="color : blue";><?php echo '<strong>'.$info[0]["Member_email"].'</strong>'; ?> <br/> </span> </div>
+		<div> <strong>Nom d'utilisateur : </strong><span style="color : gray";> <?php echo $info[0]["Member_pseudo"]; ?> </span> </div>  <br/> 
+		<div> <strong>Mot de passe : </strong><span style="color : gray";>**********</span></span>  <a href="index.php?view=ChangePass">   <span class="glyphicon glyphicon-pencil"></span> </a> <br/> <br/> </div>  <!-- on évite de l'écrire vraiment par sécurité  -->
+		<div> <strong>Email : </strong> <span style="color : gray";><?php echo $info[0]["Member_email"]; ?>  </span> </span>  <a href="index.php?view=ChangeEmail">  <span class="glyphicon glyphicon-pencil"></span> </a> <br/></div>
 
 
 </p>
 
 
+<?php
 
+if ($msge = valider("msge"))
+echo "<div class=\"alert alert-success\" role=\"alert\">Votre email a bien été modifié.</div>";
 
+if ($msgp = valider("msgp"))
+echo "<div class=\"alert alert-success\" role=\"alert\">Votre mot de passe a bien été modifié.</div>";
 
-<!--    <p> 
-   <?php //echo "Bonjour à toi  <b>$_SESSION[pseudo]</b>, bienvenue sur notre forum."; 
-   ?> 
-   </p> -->
+?>

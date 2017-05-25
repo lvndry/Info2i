@@ -131,24 +131,66 @@ function doublonEmail($email)
 
 function last_topics(){
     $SQL  = "SELECT * FROM (SELECT * FROM topic ORDER BY Topic_id DESC LIMIT 5) sub ORDER BY Topic_id ASC";
-        
-        return parcoursRs(SQLSelect($SQL));
+    return parcoursRs(SQLSelect($SQL));
 }
 
 function last_cat_topics($categorie){
      $SQL  = "SELECT * FROM (SELECT * FROM topic where Topic_genre = '$categorie' ORDER BY Topic_id DESC LIMIT 5) sub ORDER BY Topic_id ASC";
-     
-    return parcoursRs(SQLSelect($SQL));
+     return parcoursRs(SQLSelect($SQL));
 }
 
 function InfoUser($id){
-    $SQL="SELECT Member_pseudo, Member_passwd, Member_email from members where Member_id = '$id'";
+    $SQL="SELECT Member_id, Member_pseudo, Member_passwd, Member_email from members where Member_id = '$id'";
     return parcoursRs(SQLSelect($SQL)); 
 }
 
-function insert_topic($title, $content){
-    $SQL = "INSERT INTO topic(Topic_title, Topic_content) VALUES ('$title', '$content')";
+function insert_topic($creator, $title, $content, $categorie){
+    $SQL = "INSERT INTO topic(Topic_creator, Topic_title, Topic_content, Topic_genre) VALUES ('$creator', '$title', '$content', '$categorie')";
 	return SQLInsert($SQL);
 }
+
+function verifmdp($passe){
+$SQL = "SELECT Member_passwd FROM members WHERE Member_passwd ='$passe'";
+return SQLGetChamp($SQL);
+}
+
+function verifemail($email){
+$SQL = "SELECT Member_email FROM members WHERE Member_email ='$email'";
+return SQLGetChamp($SQL);
+}
+
+function changemdp($newmdp, $idUser){
+$SQL = "UPDATE members SET Member_passwd='$newmdp' WHERE Member_id = '$idUser'";
+SQLUpdate($SQL);
+}
+
+function changeemail($newemail, $idUser){
+$SQL = "UPDATE members SET Member_email='$newemail' WHERE Member_id = '$idUser'";
+SQLUpdate($SQL);
+}
+
+function view_topic($id){
+     $SQL = "SELECT Topic_title, Topic_content from topic where Topic_id = '$id'";
+     return parcoursRs(SQLSelect($SQL)); 
+}
+
+function view_last_user_topic($member){
+   $SQL = "SELECT Topic_id from topic where Topic_creator = '$member' order by Topic_id desc limit 1";
+     return parcoursRs(SQLSelect($SQL)); 
+}
+
+
+function insert_responses($responses, $id,$member){
+    $SQL = "insert into responses(responses_content, Topic_id, responses_creator) values('$responses', '$id', '$member')";
+	return SQLInsert($SQL);
+}
+
+function get_responses($id){
+    $SQL = "SELECT * from responses where topic_id = '$id' order by responses_id asc";
+    return parcoursRs(SQLSelect($SQL)); 
+}
+
 ?>
+
+
 
