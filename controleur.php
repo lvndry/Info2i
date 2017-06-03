@@ -95,26 +95,36 @@ session_start();
 			break; 
             
             case "Envoyez le topic" : 
-                if($member = valider("pseudo")){
-                    if($content = valider("content")){
-                       $title = valider("title");
-                        $categorie = valider("categorie");
-                        insert_topic($member, $title, $content, $categorie);
-                        $last_t = view_last_user_topic($member);
+                if ($title = valider("title"))
+                if ($content = valider("content"))
+                if ($member = valider("pseudo"))
+                if ($categorie = valider("categorie")){
+                insert_topic($member, $title, $content, $categorie);
+                $last_t = view_last_user_topic($member);
                 
-                        foreach($last_t as $element){
-                            $id = $element["Topic_id"];
-                            $addArgs = "?view=topic_page&id=$id";
-                        }  
-                    }   
+                foreach($last_t as $element){
+                    $id = $element["Topic_id"];
+                    $addArgs = "?view=topic_page&id=$id";
                 }
-                else rediriger("index.php?view=login");
+
+               
+
+            }
+
+
+
+                
+            	
+           
+            
+                //rediriger("templates/topic_page.php");
+                
             break;
                 
-            case "Reponse" :
-                if ($member = valider("pseudo")){
-                    $content = valider("content"); 
-                    $id = valider("id");
+            case "Répondre" :
+                if ($member = valider("pseudo"))
+                if ($content = valider("content")) 
+                if ($id = valider("id")){
                     insert_responses($content, $id, $member);
                     rediriger("index.php?view=topic_page&id=$id");
                 }
@@ -124,13 +134,6 @@ session_start();
 			case "Valider" : 
 			if ($idUser = valider("idUser"))
 				validerUtilisateur($idUser);
-			$addArgs = "?view=admin";
-			break; 
-
-
-			case "Blacklister" : 
-			if ($idUser = valider("idUser"))
-				interdireUtilisateur($idUser);
 			$addArgs = "?view=admin";
 			break; 
 
@@ -203,6 +206,42 @@ session_start();
 
 
 			break;
+
+
+			case "MettreAdmin" : 
+
+			$id = valider("id");
+			MettreAdmin($id);
+			$addArgs="?view=admin"; 
+
+			break;
+
+
+			case "SupprAdmin" :
+
+			$id = valider("id");
+			RetirerAdmin($id);
+			$addArgs="?view=admin"; 
+
+			break;
+
+
+			case "Bannir" :
+
+			$id = valider("id");
+			bannir($id);
+			$addArgs="?view=admin"; 
+
+			break;
+
+			case "Debannir" :
+
+			$id = valider("id");
+			debannir($id);
+			$addArgs="?view=admin"; 
+
+			break;
+
 
 		}
 

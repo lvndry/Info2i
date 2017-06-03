@@ -63,22 +63,24 @@ function mkLigne($tabAsso,$listeChamps=false)
 }
 
 // Exemple d'appel :  mkTable($users,array('pseudo', 'couleur', 'connecte'));	
-function mkTable($tabData,$listeChamps=false)
+function mkTable($tabData,$listeChamps=false,$nom="",$colonneVisee="")
 {
 
 	// Attention : le tableau peut etre vide 
 	// On produit un code ROBUSTE, donc on teste la taille du tableau
 	if (count($tabData) == 0) return;
 
-	echo "<table border=\"1\">\n";
+	echo "<table class=\"table table-hover\" border=\"2\">\n";
 	// afficher une ligne d'entete avec le nom des champs
-	mkLigneEntete($tabData[0],$listeChamps);
+	mkLigneEntete($tabData[0],$listeChamps,$nom,$colonneVisee);
 
 	//tabData est un tableau indicé par des entier
 	foreach ($tabData as $data)	
 	{
 		// afficher une ligne de données avec les valeurs, à chaque itération
-		mkLigne($data,$listeChamps);
+
+		mkLigne($data,$listeChamps,$nom,$colonneVisee);
+
 	}
 	echo "</table>\n";
 

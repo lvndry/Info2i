@@ -8,7 +8,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
     include_once("/libs/maLibUtils.php");	
     include_once("/libs/maLibForms.php");
 ?>
-
+<link href="css/home_css.css" rel="stylesheet">
 <h2>Creez votre topic</h2>
 <form action="controleur.php">
     <input type="text" placeholder="Titre du topic" name="title">
@@ -31,10 +31,15 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
     $info = InfoUser($id);
     foreach($info as $element)
         $member = $element["Member_pseudo"];
-    if(isset($member))
-        echo '<input name="pseudo" value="'.$member.'" hidden>';
+    echo '<input name="pseudo" value="'.$member.'" hidden>';
     ?>
   <input type="submit" value="Envoyez le topic" name="action"></input>
-   
+
 </form>
+
+
+<?php 
+if ($probleme = valider("probleme"))
+echo "<div class=\"alert alert-danger\" role=\"alert\">Erreur dans la création de votre compte.<strong> Erreur dans la création de votre topic. </strong> </div>";
+?> 
 

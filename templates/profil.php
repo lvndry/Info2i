@@ -21,6 +21,8 @@ include_once("libs/maLibForms.php");
 
 ?>
 
+<link href="css/home_css.css" rel="stylesheet">
+
 
     <div class="page-header">
       <h1> <strong> Mon profil </strong></h1>
@@ -38,7 +40,8 @@ $info = InfoUser($id);
 			
 		<div> <strong>Nom d'utilisateur : </strong><span style="color : gray";> <?php echo $info[0]["Member_pseudo"]; ?> </span> </div>  <br/> 
 		<div> <strong>Mot de passe : </strong><span style="color : gray";>**********</span></span>  <a href="index.php?view=ChangePass">   <span class="glyphicon glyphicon-pencil"></span> </a> <br/> <br/> </div>  <!-- on évite de l'écrire vraiment par sécurité  -->
-		<div> <strong>Email : </strong> <span style="color : gray";><?php echo $info[0]["Member_email"]; ?>  </span> </span>  <a href="index.php?view=ChangeEmail">  <span class="glyphicon glyphicon-pencil"></span> </a> <br/></div>
+		<div> <strong>Email : </strong> <span style="color : gray";><?php echo $info[0]["Member_email"]; ?>  </span> </span>  <a href="index.php?view=ChangeEmail">  <span class="glyphicon glyphicon-pencil"></span> </a> <br/>
+		</div>
 
 
 </p>

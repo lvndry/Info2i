@@ -60,6 +60,8 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
          	<!-- <li class="active"><a href="index.php?view=accueil">Accueil</a></li> -->
 		<?=mkHeadLink("Accueil","accueil",$view)?>
 		<?php
+		$id = valider("id","SESSION"); 
+		$info = InfoUser($id);	
 		// Si l'utilisateur n'est pas connecte, on affiche un lien de connexion 
 
 
@@ -124,6 +126,22 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 			<?php
 		} 
 		?>
+
+		<?php
+		
+       	if (valider("connecte","SESSION"))
+       	if ($info[0]["Member_admin"] == 1) {
+       		?>
+
+				
+			<li><a href="index.php?view=admin"><span class="glyphicon glyphicon-th-large"></span> Administration </a></li>
+			<?php
+		} 
+		?>
+
+
+
+		
     </ul>
 
       </div><!--/.nav-collapse -->

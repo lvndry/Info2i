@@ -9,7 +9,9 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 ?>
     <link rel="stylesheet" href="css/Home_css.css">
     <?php
+        if (valider("connecte","SESSION")) {
         echo '<a class="creation" href="templates/Create_topic.php">Creer topic</a>'; 
+    }
     ?>
     <section class="last-topic-contain">
             <div class="last-topic">

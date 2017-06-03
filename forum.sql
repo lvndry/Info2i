@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 19 Mai 2017 à 07:04
+-- Généré le :  Ven 02 Juin 2017 à 21:51
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -37,6 +37,7 @@ CREATE TABLE `categories` (
 --
 -- Structure de la table `forum`
 --
+
 CREATE TABLE `forum` (
   `Forum_id` int(11) NOT NULL,
   `Cat_id` int(11) NOT NULL,
@@ -58,17 +59,19 @@ CREATE TABLE `members` (
   `Member_id` int(11) NOT NULL,
   `Member_pseudo` varchar(15) DEFAULT NULL,
   `Member_passwd` varchar(30) DEFAULT NULL,
-  `Member_email` varchar(50) DEFAULT NULL
+  `Member_email` varchar(50) DEFAULT NULL,
+  `Member_admin` int(11) DEFAULT '0',
+  `Member_ban` int(11) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `members`
 --
 
-INSERT INTO `members` (`Member_id`, `Member_pseudo`, `Member_passwd`, `Member_email`) VALUES
-(1, 'leo62220', 'testmdp', 'leo@free.fr'),
-(7, 'antoine', 'antoine', 'antoine@antoine.fr'),
-(8, 'Alex', 'laex', 'alex@alex.alex');
+INSERT INTO `members` (`Member_id`, `Member_pseudo`, `Member_passwd`, `Member_email`, `Member_admin`, `Member_ban`) VALUES
+(1, 'leo62220', 'testmdp', 'leo@free.fr', 1, 0),
+(7, 'antoine', 'antoine', 'antoine@antoine.fr', 0, 1),
+(8, 'Alex', 'laex', 'alex@alex.alex', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -88,12 +91,13 @@ CREATE TABLE `responses` (
 --
 
 INSERT INTO `responses` (`responses_id`, `topic_id`, `responses_content`, `responses_creator`) VALUES
-(1, 21, ' regarde internet\r\n', NULL),
-(2, 18, ' regarde le cours', NULL),
-(3, 18, ' regarde le cours', NULL),
-(4, 18, ' Non va voir le prof', NULL),
-(5, 17, ' A faire passer un string en int', NULL),
-(6, 17, ' A rien', NULL);
+(20, 36, 'Ok viens sur facebook ', 'antoine'),
+(19, 35, 'Yep ! ', 'antoine'),
+(21, 37, 'peut être sale fainéant  ', 'leo62220'),
+(17, 33, 'Merci mec c\'était trop bon ! ', 'antoine'),
+(16, 31, 'D\'accord, merci ! ', 'leo62220'),
+(15, 32, 'Regarde le cours voyons ! ', 'leo62220'),
+(14, 31, 'Va voir la biblio ', 'antoine');
 
 -- --------------------------------------------------------
 
@@ -146,17 +150,12 @@ CREATE TABLE `topic` (
 --
 
 INSERT INTO `topic` (`Topic_id`, `Forum_id`, `Topic_title`, `Topic_creator`, `Topic_date`, `Topic_content`, `Topic_genre`, `Topic_grade`, `Topic_first post`, `Topic_last_post`, `responses`) VALUES
-(1, 0, 'J\'ai du mal en maths', 'Landry', '2017-05-07', 'Bonjour je recherche quelqu\'un qui puisse m\'aider a reviser les applications lineaires merci', 'Mathematiques', 1, '', '', NULL),
-(2, NULL, 'Test', NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL),
-(3, NULL, 'MPM', 'leo62220', NULL, 'Je suis maintenant capable de lancer un topic', NULL, NULL, NULL, NULL, NULL),
-(4, NULL, 'SDA', 'leo62220', NULL, 'Comment on fait une boucle ?', 'Informatique', NULL, NULL, NULL, NULL),
-(5, NULL, 'zsdqdfsdd', 'leo62220', NULL, 'Comment calculer le déterminant d\'une matrice carre ? ', 'Mathématiques ', NULL, NULL, NULL, NULL),
-(22, NULL, 'Structure SDA', 'Alex', NULL, 'Comment on fait une struct', 'Informatique', NULL, NULL, NULL, NULL),
-(21, NULL, 'Canvas', 'antoine', NULL, 'Comment on creer un canvas ?', 'Informatique', NULL, NULL, NULL, ' Regarde internet'),
-(20, NULL, '', '', NULL, '', '', NULL, NULL, NULL, ' BONJOUR'),
-(14, NULL, 'My topic', 'leo62220', NULL, 'Comment determiné une droite de charge ?', 'Industriel', NULL, NULL, NULL, NULL),
-(17, NULL, 'azerty', 'leo62220', NULL, 'A quoi sert la fonction atoi ?', 'Informatique', NULL, NULL, NULL, ' A convertir un int en string'),
-(18, NULL, 'ENI', 'leo62220', NULL, 'Comment faire une droite de charge\r\n', 'Industriel', NULL, NULL, NULL, NULL);
+(36, NULL, 'Matrice', 'leo62220', NULL, 'aidez nous à résoudre le problème qu\'on a eu hier svp ', 'Mathematiques', NULL, NULL, NULL, NULL),
+(37, NULL, 'L\'espagnol..', 'antoine', NULL, 'ça va être facultatif ? ', 'Langues', NULL, NULL, NULL, NULL),
+(35, NULL, 'J\'adore le MPM', 'leo62220', NULL, 'c\'était un chouette projet ! ', 'Informatique', NULL, NULL, NULL, NULL),
+(33, NULL, 'Une bonne tarte aux pommes', 'leo62220', NULL, 'Salut, vous trouverez ci joint un lien pour une tarte aux pommes : \r\nhttp://www.marmiton.org/recettes/recettes-incontournables-detail_tarte-aux-pommes_r_34.aspx', 'Cuisine', NULL, NULL, NULL, NULL),
+(32, NULL, 'Aide pour les matrices', 'antoine', NULL, 'Comment on calcul le déterminant d\'une matrice 4x4 ? ', 'Informatique', NULL, NULL, NULL, NULL),
+(31, NULL, 'Aide pour le C', 'leo62220', NULL, 'Je voudrais savoir comment installer la SDL 2 ', 'Informatique', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -226,7 +225,7 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT pour la table `responses`
 --
 ALTER TABLE `responses`
-  MODIFY `responses_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `responses_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT pour la table `test`
 --
@@ -236,7 +235,7 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT pour la table `topic`
 --
 ALTER TABLE `topic`
-  MODIFY `Topic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `Topic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

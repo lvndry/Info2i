@@ -87,10 +87,8 @@ function proteger($str)
 		}
 		return $nextTab;
 	}
-	else {
-        //$str = htmlspecialchars($str);
+	else 	
 		return addslashes ($str);
-    }
 	//return str_replace("'","''",$str); 	//utile pour les serveurs de bdd Crosoft
 }
 

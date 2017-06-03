@@ -5,7 +5,7 @@
 include_once("maLibSQL.pdo.php");
 
 
-function listerUtilisateurs($classe = "both")
+function listerUtilisateurs()
 {
 	// NB : la présence du symbole '=' indique la valeur par défaut du paramètre s'il n'est pas fourni
 	// Cette fonction liste les utilisateurs de la base de données 
@@ -17,25 +17,61 @@ function listerUtilisateurs($classe = "both")
 	// Lorsqu'elle vaut "bl", elle ne renvoie que les utilisateurs blacklistés
 	// Lorsqu'elle vaut "nbl", elle ne renvoie que les utilisateurs non blacklistés
 
-	$SQL = "select * from members";
-	if ($classe == "bl")
-		$SQL .= " where blacklist=1";
-	if ($classe == "nbl")
-		$SQL .= " where blacklist=0";
+	$SQL = "SELECT * from members";
 
-	$SQL .= " ORDER BY valide ASC";
+
+	
 	
 	// echo $SQL;
 	return parcoursRs(SQLSelect($SQL));
 
 }
 
+function MettreAdmin($idUser)
+{
+// cette fonction affecte le booléen "Admin" à vrai.
+$SQL = "UPDATE members SET Member_admin=1 WHERE Member_id='$idUser'";
+return SQLUpdate($SQL);
+
+}
+
+function RetirerAdmin($idUser)
+{
+// cette fonction affecte le booléen "Admin" à faux.
+$SQL = "UPDATE members SET Member_admin=0 WHERE Member_id='$idUser'";
+return SQLUpdate($SQL);
+}
+
+function bannir($idUser)
+{
+// cette fonction affecte le booléen "bannir" à vrai.
+$SQL = "UPDATE members SET Member_ban=1 WHERE Member_id='$idUser'";
+return SQLUpdate($SQL);
+
+
+}
+
+
+function debannir($idUser)
+{
+// cette fonction affecte le booléen "faux" à vrai.
+$SQL = "UPDATE members SET Member_ban=0 WHERE Member_id='$idUser'";
+return SQLUpdate($SQL);
+
+
+}
+
+
+
+
 function validerUtilisateur($idUser)
 {
-	// cette fonction affecte le booléen "blacklist" à vrai
-	$SQL = "UPDATE members SET valide=1 WHERE id='$idUser'";
+	// cette fonction affecte le booléen "Admin" à vrai
+	$SQL = "UPDATE members SET valide=1 WHERE Member_id='$idUser'";
 	SQLUpdate($SQL);
 }
+
+
 
 function supprimerUtilisateur($idUser)
 {
@@ -140,7 +176,7 @@ function last_cat_topics($categorie){
 }
 
 function InfoUser($id){
-    $SQL="SELECT Member_id, Member_pseudo, Member_passwd, Member_email from members where Member_id = '$id'";
+    $SQL="SELECT Member_id, Member_pseudo, Member_passwd, Member_email, Member_admin, Member_ban from members where Member_id = '$id'";
     return parcoursRs(SQLSelect($SQL)); 
 }
 

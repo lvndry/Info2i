@@ -16,12 +16,26 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 ?>
 <html>
    <head>
+<?php 
+$id = valider("id","SESSION"); 
+$info = InfoUser($id);
+
+if ( !valider("connecte","SESSION") ||$info[0]["Member_ban"]==0 ) {
+
+?>
+
+    <?php
+        if (valider("connecte","SESSION")) {
+        echo '<a class="creation" href="templates/Create_topic.php">Creer topic</a>'; 
+    }
+    ?>
+
        <meta charset="utf-8">
          <link rel="stylesheet" href="css/Home_css.css">
          <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400">
    </head>
     <body>
-        <section class="last-topic-contain jumbotron">
+        <section class="last-topic-contain">
             <div class="last-topic">
                 <h2>Les derniers topics crées : </h2><hr />
                 <ol>
@@ -30,18 +44,18 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
                     $topics = last_topics();
                     foreach($topics as $element){
                         $topic_id = $element["Topic_id"];
-                        echo "<p><li><a href=\"index.php?view=topic_page&id=$topic_id\">[". $element["Topic_creator"]. "]" .$element["Topic_title"]. "</a></li></p>";
+                        echo "<li><a href=\"index.php?view=topic_page&id=$topic_id\">[". $element["Topic_creator"]. "]" .$element["Topic_title"]. "<a/></li><br />";
                     }
                 ?>
                 </form>
             </div>
         </section>
         
-        <section class="all-themes jumbotron">
+        <section class="all-themes">
         <h2 id="all-topics">Tous les forums</h2><hr />
         <div class="ul-container">
-            <li class="strong"> 
-               <h3>Scolaire</h3>
+        <ul>
+            <li class="strong"> <a><h3>Scolaire</h3></a>
                 <ul>
                     <li><a href="index.php?view=topic&cat=Informatique">Informatique</a></li>
                     <li><a href="index.php?view=topic&cat=Mathematiques">Mathematiques</a></li>
@@ -51,16 +65,42 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
                 </ul>
             </li>
             
-            <li class="strong"><h3>Divers</h3>
+            <li class="strong"><a><h3>Divers</h3></a>
                <ul>
                    <li><a href="index.php?view=topic&cat=DIY">diy</a></li>
                    <li><a href="index.php?view=topic&cat=Cuisine">Cuisine</a></li>
                    <li><a href="index.php?view=topic&cat=Soirée">Soiree</a></li>
                </ul>
             </li>
-            <li class="strong"><h3>Ventes</h3></li>
-       
+            <li class="strong"><a><h3>Ventes</h3></a></li>
+        </ul>
         </div>
         </section>
+    <?php
+  }  
+ if  (valider("connecte","SESSION")) {
+ if ($info[0]["Member_ban"]==1)
+ {
+    ?> 
+
+    <div class="page-header" style="color:red;">
+    <h1>Ton compte a été banni.</h1>
+</div>
+
+<p> <h3> En effet, tu as été banni de ce site, pour avoir plus d'informations, contacte un administrateur.  </h3> </p>
+
+<?php
+  }
+
+}
+   
+    
+?> 
+
+
+
+
+
+
 </body>
 </html>
