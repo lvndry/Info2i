@@ -1,3 +1,3 @@
 # Info2i
 Helping Forum beetween students
-First year Web Project
+First year Web Project using PHP
